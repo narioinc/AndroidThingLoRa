@@ -14,6 +14,8 @@ Usage is quite simple
    
 2) create Request object using the UARTRequest Class and attach a UARTResponseListener
    ```java
+   UARTRequest request = new UARTRequest(mWisnodeLora);
+   
    try {
           request.execute(WisnodeLora.VERSION_REQUEST, "at+version\r\n", new UARTResponseListener {...});
       }catch (IOException exp){
