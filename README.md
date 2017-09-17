@@ -15,12 +15,26 @@ Usage is quite simple
 2) create Request object using the UARTRequest Class and attach a UARTResponseListener
    ```java
    try {
-          request.execute(WisnodeLora.VERSION_REQUEST, "at+version\r\n", this);
+          request.execute(WisnodeLora.VERSION_REQUEST, "at+version\r\n", new UARTResponseListener {...});
       }catch (IOException exp){
           Log.e(TAG, "Error while executing request.");
       }
     ```
     
+	and then implementing the two function of the UARTResponseListener
+	
+	```java
+	 @Override
+    public void onSuccess(int requestCode, byte[] response, UartDevice device) {
+        Log.i(TAG, "Response for request code :: " + requestCode + " is :: " + new String(response));
+    }
+
+    @Override
+    public void onFailure(int requestCode, int errorCode, UartDevice device) {
+        Log.e(TAG, "Error Response for request code :: " + requestCode + " is :: " + errorCode);
+    }
+	```
+	
 # Revisions    
 
 ## rev 1.0
